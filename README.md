@@ -1,47 +1,96 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19865634&assignment_repo_type=AssignmentRepo)
 # MongoDB Fundamentals Assignment
 
-This assignment focuses on learning MongoDB fundamentals including setup, CRUD operations, advanced queries, aggregation pipelines, and indexing.
+## Project Setup Instructions
 
-## Assignment Overview
+### Prerequisites
+- MongoDB Community Server (version 8.0.11)
+- Node.js (version 18 or higher)
+- MongoDB Shell (mongosh version 2.5.3)
 
-You will:
-1. Set up a MongoDB database
-2. Perform basic CRUD operations
-3. Write advanced queries with filtering, projection, and sorting
-4. Create aggregation pipelines for data analysis
-5. Implement indexing for performance optimization
+### Installation Steps
+1. Install MongoDB from: https://www.mongodb.com/try/download/community
+2. Install Node.js from: https://nodejs.org/
+3. Install MongoDB Shell from: https://www.mongodb.com/try/download/shell
 
-## Getting Started
+### How to Run the Project
+1. Open Command Prompt in your project folder
+2. First install the required MongoDB package:
+   ```
+   npm install mongodb
+   ```
+3. Then run the script to insert book data:
+   ```
+   node insert_books.js
+   ```
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install MongoDB locally or set up a MongoDB Atlas account
-4. Run the provided `insert_books.js` script to populate your database
-5. Complete the tasks in the assignment document
+## Working with the Database
 
-## Files Included
+### Starting MongoDB
+1. Open one Command Prompt window and run:
+   ```
+   mongod
+   ```
+2. Open another Command Prompt window to run commands:
+   ```
+   mongosh
+   ```
 
-- `Week1-Assignment.md`: Detailed assignment instructions
-- `insert_books.js`: Script to populate your MongoDB database with sample book data
+### Basic Commands
+To see all databases:
+```
+show dbs
+```
 
-## Requirements
+To use your bookstore database:
+```
+use plp_bookstore
+```
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- MongoDB Shell (mongosh) or MongoDB Compass
+To see all books:
+```
+db.books.find()
+```
 
-## Submission
+To see the first 5 books:
+```
+db.books.find().limit(5)
+```
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+## What I Accomplished
+1. Successfully set up MongoDB and inserted book data
+2. Performed database operations including:
+   - Inserting new books
+   - Finding specific books
+   - Deleting books
+3. Created multiple documents in the database
 
-1. Complete all tasks in the assignment
-2. Add your `queries.js` file with all required MongoDB queries
-3. Include a screenshot of your MongoDB database
-4. Update the README.md with your specific setup instructions
+## Challenges I Faced
+1. Initially got errors when trying to run MongoDB commands because:
+   - I needed to use "mongosh" instead of "mongo"
+   - Solution: Installed the correct MongoDB Shell version
 
-## Resources
+2. Had issues with npm not finding package.json
+   - Solution: Ran `npm install mongodb` first to create node_modules
 
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [MongoDB University](https://university.mongodb.com/)
-- [MongoDB Node.js Driver](https://mongodb.github.io/node-mongodb-native/) 
+3. Needed to drop and recreate the collection
+   - Solution: The insert_books.js script automatically handles this
+
+## Files in This Project
+- `insert_books.js` - Script that inserts the initial book data
+- `queries.js` - Contains all MongoDB queries I ran (to be completed)
+- Screenshots of my working database (to be added)
+
+## Verification
+To verify all books were inserted correctly:
+1. Connect to mongosh
+2. Run:
+   ```
+   use plp_bookstore
+   db.books.countDocuments({})
+   ```
+   This should return 12 (the number of books inserted)
+
+To see the indexes:
+```
+db.books.getIndexes()
+```
